@@ -1,6 +1,7 @@
 package page_objects.modules
 
 import geb.Module
+import page_objects.CartPage
 
 /**
  * Created by dsurchis on 14/12/16.
@@ -8,6 +9,6 @@ import geb.Module
 class AddToCartDialog extends Module {
     static base = { $("#colorbox") }
     static content = {
-        checoutCta { $("a.add-to-cart-button") }
+        checoutCta(to:CartPage) { $("a.add-to-cart-button") }
     }
 }

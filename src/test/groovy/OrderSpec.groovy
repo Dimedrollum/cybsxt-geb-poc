@@ -1,6 +1,7 @@
 import geb.spock.GebReportingSpec
 import page_objects.CartPage
 import page_objects.CategoryPage
+import page_objects.CheckoutPage
 import page_objects.HomePage
 import page_objects.LoginPage
 import page_objects.ProductDescriptionPage
@@ -8,6 +9,16 @@ import page_objects.SearchResultPage
 import spock.genesis.Gen
 
 class OrderSpec extends GebReportingSpec{
+
+//    def setup() {
+//        resetBrowser()
+//        getBrowser()
+//    }
+//
+//    def cleanup() {
+//        browser.close()
+////        browser.quit()
+//    }
 
     def "can open home page"() {
         when:
@@ -100,8 +111,37 @@ class OrderSpec extends GebReportingSpec{
         at CartPage
     }
 
+    def "can checkout"() {
+        given:
+        registeredUser()
+        cartWithAProduct()
 
+        when:
+        checkoutCta.click()
 
+        then:
+        at CheckoutPage
+    }
+
+    def registeredUser() {
+        to LoginPage
+        titleCode = "mr"
+        firstName = "John"
+        lastName = "Smith"
+        email = ++Gen.string(~/[a-z]{10}/).iterator() + "@tk.md"
+        pwd = "P@ssw0rd"
+        checkPwd = "P@ssw0rd"
+        registrationForm.register.click()
+        at HomePage
+    }
+
+    def cartWithAProduct() {
+        def productId = "300613859"
+        to ProductDescriptionPage, productId
+        addToCart.cta.click()
+        addToCartDialog.checoutCta.click()
+        at CartPage
+    }
 
 
 

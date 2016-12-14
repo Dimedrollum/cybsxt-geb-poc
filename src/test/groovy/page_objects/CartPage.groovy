@@ -8,4 +8,7 @@ import geb.Page
 class CartPage extends Page {
     static url = "cart"
     static at = { title.startsWith("Your Shopping Bag") }
+    static content = {
+        checkoutCta(to:CheckoutPage) { $("button.btn--continue-checkout", 0)}
+    }
 }
