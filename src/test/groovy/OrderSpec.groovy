@@ -11,6 +11,7 @@ class OrderSpec extends GebReportingSpec{
     def "can open home page"() {
         when:
         to HomePage
+
         then:
         at HomePage
 
@@ -30,6 +31,7 @@ class OrderSpec extends GebReportingSpec{
     def "can register"() {
         given:
         to LoginPage
+
         when:
         titleCode = "mr"
         firstName = "John"
@@ -46,6 +48,7 @@ class OrderSpec extends GebReportingSpec{
     def "can search product"(){
         given:
         to HomePage
+
         when:
         header.search.input = "abs"
         header.search.submit.click()
@@ -55,27 +58,25 @@ class OrderSpec extends GebReportingSpec{
 
     }
 
-//    def "can open category page"(){
-//        given:
-//        def category = "160400"
-//
-//        when:
-//        to CategoryPage(categoryId: category)
-//    }
+    def "can open category page"(){
+        given:
+        def category = "160400"
+
+        when:
+        to CategoryPage, category
+
+        then:
+        at CategoryPage
+    }
 
     def "can open pdp"() {
         given:
-        to HomePage
+//        def category = "160400"
+        to CategoryPage, "160400"
 
         when:
-        header.search.input = "abs"
-        header.search.submit.click()
-        then:
-        at SearchResultPage
-//        productList.products.size() == 20
+        productList.products.first().picture.click()
 
-        when:
-        productList.products[0].picture.click()
         then:
         at ProductDescriptionPage
     }
