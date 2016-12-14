@@ -11,4 +11,4 @@ import org.openqa.selenium.firefox.FirefoxDriver
 driver = { new FirefoxDriver() }
 
 //baseUrl = "http://www.gebish.org"
-baseUrl = "https://apparel-uk.localhost:9002/yacceleratorstorefront/en/"
+baseUrl = "https://apparel-uk.local:9002/yacceleratorstorefront/en/"

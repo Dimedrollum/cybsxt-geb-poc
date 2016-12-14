@@ -123,6 +123,43 @@ class OrderSpec extends GebReportingSpec{
         at CheckoutPage
     }
 
+    def "can create Order"(){
+        given:
+        checkoutForRegisteredUserStarted()
+
+        when:
+        countryIso = "GB"
+        titleCode = "mr"
+        firstName = "John"
+        lastName = "Smith"
+        line1 = "Address Str. 1"
+        townCity = "London"
+        postcode = "A9A 9AA"
+        shippingCta.click()
+        and:
+        deliveryMethodCta.click()
+        and:
+        card_cardType = "001"
+        card_accountNumber = "4111111111111111"
+        card_expirationMonth = "1"
+        card_expirationYear = "2020"
+        billingCta.click()
+
+
+
+
+        then:
+        1==1
+
+    }
+
+    def checkoutForRegisteredUserStarted() {
+        registeredUser()
+        cartWithAProduct()
+        checkoutCta.click()
+        at CheckoutPage
+    }
+
     def registeredUser() {
         to LoginPage
         titleCode = "mr"

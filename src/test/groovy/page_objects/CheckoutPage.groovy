@@ -8,4 +8,9 @@ import geb.Page
 class CheckoutPage extends Page{
     static url = "checkout"
     static at = { title.trim().startsWith("Checkout")}
+    static content = {
+        shippingCta  { $("#addressSubmit") }
+        deliveryMethodCta { $("#deliveryMethodSubmit")}
+        billingCta  { $("button.submit_silentOrderPostForm")}
+    }
 }
