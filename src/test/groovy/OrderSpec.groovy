@@ -1,6 +1,8 @@
 import geb.spock.GebReportingSpec
+import page_objects.CategoryPage
 import page_objects.HomePage
 import page_objects.LoginPage
+import page_objects.ProductDescriptionPage
 import page_objects.SearchResultPage
 import spock.genesis.Gen
 
@@ -53,18 +55,29 @@ class OrderSpec extends GebReportingSpec{
 
     }
 
+//    def "can open category page"(){
+//        given:
+//        def category = "160400"
+//
+//        when:
+//        to CategoryPage(categoryId: category)
+//    }
+
     def "can open pdp"() {
         given:
         to HomePage
+
         when:
         header.search.input = "abs"
         header.search.submit.click()
         then:
         at SearchResultPage
-        productList.products.size() == 20
+//        productList.products.size() == 20
 
-
-
+        when:
+        productList.products[0].picture.click()
+        then:
+        at ProductDescriptionPage
     }
 
 

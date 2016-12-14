@@ -1,6 +1,7 @@
 package page_objects.modules
 
 import geb.Module
+import page_objects.list_items.PlpCell
 
 /**
  * Created by dsurchis on 14/12/16.
@@ -8,6 +9,6 @@ import geb.Module
 class ProductListModule extends Module {
     static base = { $("ul.product__listing") }
     static content = {
-        products { $("div.product-item")}
+        products { $("div.product-item").moduleList(PlpCell) }
     }
 }
