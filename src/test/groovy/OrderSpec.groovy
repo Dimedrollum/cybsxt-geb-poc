@@ -4,21 +4,12 @@ import page_objects.CategoryPage
 import page_objects.CheckoutPage
 import page_objects.HomePage
 import page_objects.LoginPage
+import page_objects.OrderConfirmationPage
 import page_objects.ProductDescriptionPage
 import page_objects.SearchResultPage
 import spock.genesis.Gen
 
 class OrderSpec extends GebReportingSpec{
-
-//    def setup() {
-//        resetBrowser()
-//        getBrowser()
-//    }
-//
-//    def cleanup() {
-//        browser.close()
-////        browser.quit()
-//    }
 
     def "can open home page"() {
         when:
@@ -136,20 +127,23 @@ class OrderSpec extends GebReportingSpec{
         townCity = "London"
         postcode = "A9A 9AA"
         shippingCta.click()
+
         and:
         deliveryMethodCta.click()
+
         and:
         card_cardType = "001"
         card_accountNumber = "4111111111111111"
         card_expirationMonth = "1"
         card_expirationYear = "2020"
+        card_cvNumber = "123"
         billingCta.click()
-
-
-
+        and:
+        acceptCheckBox.click()
+        placeOrderCta.click()
 
         then:
-        1==1
+        at OrderConfirmationPage
 
     }
 

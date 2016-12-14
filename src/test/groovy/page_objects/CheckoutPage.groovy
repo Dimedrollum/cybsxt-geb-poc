@@ -12,5 +12,7 @@ class CheckoutPage extends Page{
         shippingCta  { $("#addressSubmit") }
         deliveryMethodCta { $("#deliveryMethodSubmit")}
         billingCta  { $("button.submit_silentOrderPostForm")}
+        placeOrderCta(to:OrderConfirmationPage) { $("#placeOrder", 0)}
+        acceptCheckBox { $("#Terms1", 0) }
     }
 }
