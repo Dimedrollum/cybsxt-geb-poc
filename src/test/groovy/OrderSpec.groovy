@@ -1,4 +1,5 @@
 import geb.spock.GebReportingSpec
+import page_objects.CartPage
 import page_objects.CategoryPage
 import page_objects.HomePage
 import page_objects.LoginPage
@@ -71,8 +72,8 @@ class OrderSpec extends GebReportingSpec{
 
     def "can open pdp"() {
         given:
-//        def category = "160400"
-        to CategoryPage, "160400"
+        def category = "160400"
+        to CategoryPage, category
 
         when:
         productList.products.first().picture.click()
@@ -80,6 +81,26 @@ class OrderSpec extends GebReportingSpec{
         then:
         at ProductDescriptionPage
     }
+
+    def "can add to cart"() {
+        given:
+        def productId = "300613859"
+        to ProductDescriptionPage, productId
+
+        when:
+        addToCart.cta.click()
+
+        then:
+        addToCartDialog.displayed
+
+        when:
+        addToCartDialog.checoutCta.click()
+
+        then:
+        at CartPage
+    }
+
+
 
 
 
