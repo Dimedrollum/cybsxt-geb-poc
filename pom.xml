@@ -62,6 +62,11 @@
       <version>${seleniumVersion}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.nagternal</groupId>
+      <artifactId>spock-genesis</artifactId>
+      <version>0.6.0</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

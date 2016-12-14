@@ -1,6 +1,7 @@
 import geb.spock.GebReportingSpec
 import page_objects.HomePage
 import page_objects.LoginPage
+import spock.genesis.Gen
 
 class OrderSpec extends GebReportingSpec{
 
@@ -27,17 +28,24 @@ class OrderSpec extends GebReportingSpec{
         given:
         to LoginPage
         when:
-        registrationForm.titleCode = "mr"
-        registrationForm.firstName = "John"
-        registrationForm.lastName = "Smith"
-        registrationForm.email = "test@tk.md"
-        registrationForm.pwd = "P@ssw0rd"
-        registrationForm.checkPwd = "P@ssw0rd"
-
+        titleCode = "mr"
+        firstName = "John"
+        lastName = "Smith"
+        email = Gen.string(~/[a-z]{10}/).iterator().next() + "@tk.md"
+        pwd = "P@ssw0rd"
+        checkPwd = "P@ssw0rd"
+        registrationForm.register.click()
 
         then:
-        $("form#registerForm").titleCode == "mr"
-
+        at HomePage
     }
+
+    def "can seatch product"(){
+        given:
+        to HomePage
+    }
+
+
+
 
 }
