@@ -21,6 +21,23 @@ class OrderSpec extends GebReportingSpec{
 
         then:
         at LoginPage
+    }
+
+    def "can register"() {
+        given:
+        to LoginPage
+        when:
+        registrationForm.titleCode = "mr"
+        registrationForm.firstName = "John"
+        registrationForm.lastName = "Smith"
+        registrationForm.email = "test@tk.md"
+        registrationForm.pwd = "P@ssw0rd"
+        registrationForm.checkPwd = "P@ssw0rd"
+
+
+        then:
+        $("form#registerForm").titleCode == "mr"
 
     }
+
 }
